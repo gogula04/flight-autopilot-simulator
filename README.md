@@ -68,7 +68,7 @@ flight_autopilot_sim/
       If you don’t have a requirements.txt file, install the main packages manually:
       pip install matplotlib numpy geopy tqdm pandas
 
-How to Run
+## How to Run
 1. Run the main flight simulation
 python3 smart_flight_sim.py
 This script initializes the PID controller, simulates a full flight from Des Moines to Chicago, and logs the data to logs/flight_data.csv.
@@ -81,7 +81,7 @@ This script reads the flight log and generates visual graphs such as altitude st
 python3 flight_plot.py
 Displays a simple map of the simulated flight route.
 
-Example Output
+## Example Output
 After running the simulation, the project will produce:
 A CSV file (logs/flight_data.csv) containing all recorded telemetry data.
 Graphical plots showing:
@@ -90,7 +90,7 @@ Climb Rate vs. Turbulence (effect of environmental conditions)
 Altitude distribution histogram
 These outputs demonstrate how the autopilot system reacts to dynamic changes and reaches the target altitude efficiently.
 
-Technologies Used
+## Technologies Used
 Python 3.14
 Matplotlib for real-time plotting and visualization
 NumPy for numerical computations
@@ -98,11 +98,11 @@ GeoPy for calculating great-circle distances
 Pandas for data analysis
 TQDM for progress visualization
 
-Author
+## Author
 Venkatesh Gogula
 Computer Science Major
 Iowa State University, Ames, Iowa
 GitHub: gogula04
 
-License
+## License
 This project is released under the MIT License. You are free to use, modify, and distribute it for educational and research purposes.
