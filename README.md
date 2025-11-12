@@ -24,30 +24,18 @@ The simulator was developed for learning and experimentation purposes, focusing 
 
 ## Project Structure
 
-flight_autopilot_sim/
-
-│
-
-├── smart_flight_sim.py # Main simulator script (autopilot and logging)
-
-├── analyze_flight_data.py # Post-flight analytics and performance visualization
-
-├── flight_plot.py # Basic visualization of the flight path
-
-├── autopilot_pid.py # PID control logic
-
-
-├── flight_dashboard.py # Optional dashboard view (for extended visualization)
-
-│
-
-├── logs/
-
-│ └── flight_data.csv # Logged flight data
-
-│
-
+flight-autopilot-simulator/
+├── autopilot_pid.py          → Control algorithm core
+├── flight_dashboard.py       → GUI / Visualization interface
+├── flight_plot.py            → Trajectory plotting module
+├── smart_flight_sim.py       → Main simulation runner
+├── analyze_flight_data.py    → Data analysis + logging tools
+├── logs/                     → Output telemetry
+├── Run_FlightSim.command     → Simple command runner
+├── README.md                 → Project overview
+└── LICENSE                   → MIT license 
 └── venv/ # Virtual environment (excluded from repository)
+
 
 
 ---
