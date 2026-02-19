@@ -1,11 +1,17 @@
-import matplotlib
-matplotlib.use("MacOSX") 
-
 import os
+import matplotlib
+
+# Use correct backend depending on environment
+# CI/CD (Linux, no GUI) → Agg
+# Local Mac → MacOSX
+if os.environ.get("CI") == "true":
+    matplotlib.use("Agg")
+else:
+    matplotlib.use("MacOSX")
+
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-
 
 log_path = "logs/flight_data.csv"
 if not os.path.exists(log_path):

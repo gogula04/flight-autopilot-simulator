@@ -3,6 +3,14 @@ import subprocess
 import time
 import sys
 import platform
+import matplotlib
+
+# Fix backend for CI/CD vs Mac
+if os.environ.get("CI") == "true":
+    matplotlib.use("Agg")
+else:
+    matplotlib.use("MacOSX")
+
 import matplotlib.pyplot as plt
 
 

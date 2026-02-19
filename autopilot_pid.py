@@ -1,4 +1,10 @@
-import time
+import os
+# Backend fix: Mac locally, Agg for CI/CD (Linux headless)
+if os.environ.get("CI") == "true":
+    matplotlib.use("Agg")
+else:
+    matplotlib.use("MacOSX")
+
 import matplotlib.pyplot as plt
 import numpy as np
 
