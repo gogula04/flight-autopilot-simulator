@@ -1,0 +1,79 @@
+name: Smart Flight Autopilot Simulator CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-test-run:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    # Step 1: Checkout repository
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # Step 2: Setup Python
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.10"
+
+    # Step 3: Create virtual environment
+    - name: Create virtual environment
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+
+    # Step 4: Install dependencies
+    - name: Install dependencies
+      run: |
+        source venv/bin/activate
+        pip install --upgrade pip
+        pip install matplotlib numpy geopy tqdm pandas
+
+    # Step 5: Create logs directory
+    - name: Ensure logs directory exists
+      run: mkdir -p logs
+
+    # Step 6: Run flight simulator
+    - name: Run Smart Flight Simulator
+      run: |
+        source venv/bin/activate
+        python smart_flight_sim.py
+
+    # Step 7: Verify log file generated
+    - name: Verify flight log exists
+      run: |
+        if [ ! -f logs/flight_data.csv ]; then
+          echo "ERROR: flight_data.csv not generated"
+          exit 1
+        fi
+
+    # Step 8: Run analysis
+    - name: Run flight data analysis
+      run: |
+        source venv/bin/activate
+        python analyze_flight_data.py
+
+    # Step 9: Upload artifacts
+    - name: Upload flight logs
+      uses: actions/upload-artifact@v4
+      with:
+        name: flight-logs
+        path: logs/
+
+    # Step 10: Upload generated plots (if exist)
+    - name: Upload plots
+      uses: actions/upload-artifact@v4
+      with:
+        name: flight-plots
+        path: |
+          *.png
+          *.jpg
+          *.csv
+        if-no-files-found: ignore
